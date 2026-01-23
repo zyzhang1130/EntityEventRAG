@@ -1,0 +1,22 @@
+__pycache__
+
+# Environment variables (API keys - DO NOT COMMIT)
+.env
+*.egg-info
+dickens/
+book.txt
+entity_event_rag_dev/
+.idea/
+dist/
+env/
+local_neo4jWorkDir/
+neo4jWorkDir/
+ignore_this.txt
+.venv/
+*.ignore.*
+.ruff_cache/
+
+# Cache and generated files
+example_cache/
+*.html
+.DS_Store

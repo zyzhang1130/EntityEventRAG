@@ -1,0 +1,28 @@
+accelerate
+aioboto3
+aiohttp
+jsonlines
+numpy
+pydantic
+
+# database packages
+graspologic
+hnswlib
+nano-vectordb
+neo4j
+networkx
+ollama
+openai
+oracledb
+plotly
+PyPDF2
+pyvis
+tenacity
+# lmdeploy[all]
+
+# LLM packages
+tiktoken
+torch
+transformers
+xxhash
+python-dotenv
