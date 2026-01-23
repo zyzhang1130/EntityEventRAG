@@ -97,7 +97,24 @@ EntityEventRAG/
 
 ### RAG_documents
 
-This folder contains 16 classic literary works used for benchmarking and evaluation. Available texts include: Lady_Susan, Pride_and_Prejudice, A_Study_in_Scarlet, TheAdventuresofSherlockHolmes, The_Hound_of_the_Baskervilles, The_Sign_of_the_Four, The_Mysterious_Affair_at_Styles, The_Picture_of_Dorian_Gray, Anne_of_Green_Gables, The_Phantom_of_the_Opera, The_Secret_Garden, The_Wonderful_Wizard_of_Oz, les-miserables, The_Sorrows_of_Young_Werther, Dangerous_Connections, and The_Diary_of_a_Nobody.
+This folder contains 16 classic literary works used for benchmarking and evaluation:
+
+1. Lady Susan
+2. Pride and Prejudice
+3. A Study in Scarlet
+4. The Adventures of Sherlock Holmes
+5. The Hound of the Baskervilles
+6. The Sign of the Four
+7. The Mysterious Affair at Styles
+8. The Picture of Dorian Gray
+9. Anne of Green Gables
+10. The Phantom of the Opera
+11. The Secret Garden
+12. The Wonderful Wizard of Oz
+13. Les Misérables
+14. The Sorrows of Young Werther
+15. Dangerous Connections
+16. The Diary of a Nobody
 
 ## Configuration
 
