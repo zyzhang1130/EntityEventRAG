@@ -46,6 +46,15 @@ python examples/interactive_query.py
 
 Both examples use `./example_cache` by default. If cached graph files already exist there, `basic_usage.py` skips indexing and `interactive_query.py` lets you reuse them via “Use existing Knowledge Graphs”.
 
+For `entity_event` queries, both examples assemble a combined graph using
+`construct_bipartite_graph` and `create_combined_kg` from the interactive example.
+The query instance loads that graph and its source chunks from `combined_kg`,
+with `entity_storage_dir=entity_kg` and `event_storage_dir=event_kg`. The graph
+builder labels event nodes as `EVENT`, preserving their original subtype in
+`event_type`. Reusing cached subgraphs still requires this assembly step before
+constructing the query instance. Keep the same embedding model used to index
+those caches when querying them.
+
 ## Quick Start
 
 ```python
@@ -62,10 +71,11 @@ rag = EntityEventRAG(
 with open("document.txt") as f:
     rag.insert(f.read())
 
-# Query using different modes
+# This instance contains only the entity graph; use hybrid retrieval here.
+# For entity_event retrieval, use the combined-graph examples above.
 response = rag.query(
     "What are the main events in the story?",
-    param=QueryParam(mode="entity_event", event_hop_depth=2)
+    param=QueryParam(mode="hybrid")
 )
 print(response)
 ```
