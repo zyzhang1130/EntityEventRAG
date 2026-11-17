@@ -8,6 +8,7 @@ This example demonstrates the core functionality of the Entity-Event RAG system:
 """
 
 import os
+import shutil
 import sys
 from pathlib import Path
 from dotenv import load_dotenv
@@ -20,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from entity_event_rag import EntityEventRAG
 from entity_event_rag.base import QueryParam
+from examples.interactive_query import construct_bipartite_graph, create_combined_kg
 
 
 def main():
@@ -124,9 +126,24 @@ def main():
     print("-" * 50)
     
     try:
+        # Event vector hits must resolve in a graph containing both subgraphs.
+        # Reuse the interactive example's assembly, including EVENT normalization.
+        combined_dir = os.path.join(WORKING_DIR, "combined_kg")
+        bipartite_graph = construct_bipartite_graph(entity_graph_path, event_graph_path)
+        combined_graph = create_combined_kg(
+            entity_graph_path, event_graph_path, bipartite_graph, combined_dir
+        )
+        if combined_graph is None:
+            raise RuntimeError("Failed to construct the combined entity-event graph")
+        for name in ("kv_store_text_chunks.json", "kv_store_full_docs.json"):
+            shutil.copy2(
+                os.path.join(WORKING_DIR, "entity_kg", name),
+                os.path.join(combined_dir, name),
+            )
+
         # Create a combined RAG instance for entity-event queries
         combined_rag = EntityEventRAG(
-            working_dir=os.path.join(WORKING_DIR, "entity_kg"),
+            working_dir=combined_dir,
             extraction_type="entity",
             entity_storage_dir=os.path.join(WORKING_DIR, "entity_kg"),
             event_storage_dir=os.path.join(WORKING_DIR, "event_kg"),
